@@ -1,0 +1,16 @@
+C:\wow_dev\launcher\unused\WoWMod-Launcher-master\AmarothLauncher\bin\Release\AmarothLauncher.exe.config
+C:\wow_dev\launcher\unused\WoWMod-Launcher-master\AmarothLauncher\bin\Release\AmarothLauncher.exe
+C:\wow_dev\launcher\unused\WoWMod-Launcher-master\AmarothLauncher\bin\Release\AmarothLauncher.pdb
+C:\wow_dev\launcher\unused\WoWMod-Launcher-master\AmarothLauncher\obj\Release\AmarothLauncher.csproj.AssemblyReference.cache
+C:\wow_dev\launcher\unused\WoWMod-Launcher-master\AmarothLauncher\obj\Release\AmarothLauncher.csproj.SuggestedBindingRedirects.cache
+C:\wow_dev\launcher\unused\WoWMod-Launcher-master\AmarothLauncher\obj\Release\Interop.Shell32.dll
+C:\wow_dev\launcher\unused\WoWMod-Launcher-master\AmarothLauncher\obj\Release\AmarothLauncher.csproj.ResolveComReference.cache
+C:\wow_dev\launcher\unused\WoWMod-Launcher-master\AmarothLauncher\obj\Release\AmarothLauncher.GUI.ChangelogBrowser.resources
+C:\wow_dev\launcher\unused\WoWMod-Launcher-master\AmarothLauncher\obj\Release\AmarothLauncher.GUI.ChangelogEditor.resources
+C:\wow_dev\launcher\unused\WoWMod-Launcher-master\AmarothLauncher\obj\Release\AmarothLauncher.GUI.FTPLoginWindow.resources
+C:\wow_dev\launcher\unused\WoWMod-Launcher-master\AmarothLauncher\obj\Release\AmarothLauncher.MainWindow.resources
+C:\wow_dev\launcher\unused\WoWMod-Launcher-master\AmarothLauncher\obj\Release\AmarothLauncher.Properties.Resources.resources
+C:\wow_dev\launcher\unused\WoWMod-Launcher-master\AmarothLauncher\obj\Release\AmarothLauncher.csproj.GenerateResource.cache
+C:\wow_dev\launcher\unused\WoWMod-Launcher-master\AmarothLauncher\obj\Release\AmarothLauncher.csproj.CoreCompileInputs.cache
+C:\wow_dev\launcher\unused\WoWMod-Launcher-master\AmarothLauncher\obj\Release\AmarothLauncher.exe
+C:\wow_dev\launcher\unused\WoWMod-Launcher-master\AmarothLauncher\obj\Release\AmarothLauncher.pdb
