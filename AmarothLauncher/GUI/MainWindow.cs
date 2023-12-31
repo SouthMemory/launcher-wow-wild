@@ -136,7 +136,7 @@ namespace AmarothLauncher
                 if (File.Exists(cwd + "\\Launcher.zip"))
                     File.Delete(cwd + "\\Launcher.zip");
                 // Download new Launcher.
-                using (var client = new AmWebClient(3000))
+                using (var client = new AmWebClient(30000))
                 {
                     client.DownloadFile(c.SubElText("Paths", "LauncherPath"), cwd + "\\Launcher.zip");
                 }
@@ -288,7 +288,8 @@ namespace AmarothLauncher
             launchButt.Enabled = false;
             if (handler.IsInWowDir())
             {
-                if (!c.isDefaultConfigUsed)
+                // if (!c.isDefaultConfigUsed)
+                if (true)
                     if (handler.CheckForUpdates())
                     {
                         updateButt.Enabled = true;
@@ -424,7 +425,7 @@ namespace AmarothLauncher
 
         private void newsPictureBox_Click(object sender, EventArgs e)
         {
-            changelogBrowserButt_Click(null, null);
+            webButt_Click(null, null);
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
@@ -435,7 +436,7 @@ namespace AmarothLauncher
                 checkUpdatesButt_Click(null, null);
             else
                 UpdateSelf();
-            c.OutputContent();
+            // c.OutputContent();
         }
         #endregion
     }

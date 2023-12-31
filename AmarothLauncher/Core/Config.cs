@@ -13,7 +13,7 @@ namespace AmarothLauncher.Core
         private static Config instance;
 
         // Launcher's version.
-        public double version = 1.1;
+        public double version = 20240101.0;
         public bool isDefaultConfigUsed { get; private set; }
         XmlDocument xml = new XmlDocument();
         XmlDocument defaultXml = new XmlDocument();
@@ -58,10 +58,10 @@ namespace AmarothLauncher.Core
         private void UseDefault()
         {
             xml = defaultXml;
-            o.Messagebox(SubElText("Messages", "XmlNotOpened"));
+            // o.Messagebox(SubElText("Messages", "XmlNotOpened"));
 
             // Save default config as a new config XML. Use for generating XML to be able to edit it afterwards, do NOT have this uncommented in releases!
-            SaveDefault();
+            // SaveDefault();
 
             isDefaultConfigUsed = true;
         }
@@ -186,14 +186,14 @@ namespace AmarothLauncher.Core
 
             AddSubnodeDefault(node, "FilelistPath", "https://www.wild-wow.com/updates/filelist.conf", "Path to text filelist.");
             AddSubnodeDefault(node, "VersionPath", "https://www.wild-wow.com/updates/launcherversion.conf", "Path to text file which contains your Lancher's current version (version is a double value with . as separator!");
-            AddSubnodeDefault(node, "LauncherPath", "http://www.exeample.com/files/Launcher.zip", "Path to a zip file with Launcher files - used if Launcher finds itself outdated.");
+            AddSubnodeDefault(node, "LauncherPath", "https://www.wild-wow.com/updates/Launcher.zip", "Path to a zip file with Launcher files - used if Launcher finds itself outdated.");
             AddSubnodeDefault(node, "FilesRootPath", "https://www.wild-wow.com/updates/", "Path to folder with files. Paths in filelist are relative to this path.");
             AddSubnodeDefault(node, "ChangelogPath", "https://www.wild-wow.com/updates/changelog.xml", "!HTTP! path to changelog XML file.");
             AddSubnodeDefault(node, "ChangelogFTPPath", "ftp://ftp.example.com//www/files/", "!Full! !FTP! path to folder in which changelog is. Notice that //www/ part. You may want to use an IP instead of a domain name.");
             AddSubnodeDefault(node, "Webpage", "https://www.wild-wow.com", "URL which is to be opened when user clicks on Project webpage button.");
             AddSubnodeDefault(node, "Registration", "https://www.wild-wow.com", "URL which is to be opened when user clicks on Registration button.");
             AddSubnodeDefault(node, "Instructions", "https://www.wild-wow.com/launchermanual/", "URL which is to be opened when user clicks on Launcher manual button.");
-            AddSubnodeDefault(node, "HelloImage", "https://www.wild-wow.com/updates/hello.jpg", "URL to image which is to be displayed in Main window (latest news image). Clicking on it opens a changelog browser.");
+            AddSubnodeDefault(node, "HelloImage", "https://www.wild-wow.com/updates/hello.png", "URL to image which is to be displayed in Main window (latest news image). Clicking on it opens a changelog browser.");
 
             defaultXml.DocumentElement.AppendChild(comment);
             defaultXml.DocumentElement.AppendChild(node);
@@ -303,51 +303,52 @@ namespace AmarothLauncher.Core
         }
 
         /// <summary>
-        /// Error (and other) messages. Leave space behind message if you want to ouput something directly behind it (like file's name).
+        /// 错误（和其他）消息。如果你想直接输出某些内容到消息后面，请在消息后保留空格（比如文件名）。
         /// </summary>
         private void MessagesDefault()
         {
-            XmlComment comment = defaultXml.CreateComment("Various messages which can be output by Launcher.");
+            XmlComment comment = defaultXml.CreateComment("各种可能由启动器输出的消息。");
             XmlNode node = defaultXml.CreateElement("Messages");
 
-            AddSubnodeDefault(node, "HelloMessage", "Launcher for https://www.wild-wow.com, coded on the basis of Amaroth's work.", "Please, leave this here. If you want to add anything, add it behind original message.");
-            AddSubnodeDefault(node, "XmlNotOpened", "Default settings are being used, because LauncherConfig.xml could not be loaded. Launcher can't continue. Get a new config file!");
-            AddSubnodeDefault(node, "ChangelogNotOpened", "Failed to open a changelog file on web.");
-            AddSubnodeDefault(node, "ChangelogNotLoaded", "Failed to load changelog data. Please, contact support.");
-            AddSubnodeDefault(node, "ChangelogEmpty", "Warning: changelog is empty. You are currently creating a new one.");
-            AddSubnodeDefault(node, "InvalidFtpPassword", "Incorrect login - password combination, or incorrect FTP path to changelog.");
-            AddSubnodeDefault(node, "PictureNotOpened", "Picture from given URL could not be opened. URL seems to be invalid.");
-            AddSubnodeDefault(node, "ChangelogNotUploaded", "Changelog could not be uploaded. Backup XML file can be found in Launcher's directory.");
-            AddSubnodeDefault(node, "ChangelogUploadOK", "Changelog was succesfully updated.");
-            AddSubnodeDefault(node, "UnZipingFileError", "Failed to unzip file: ");
-            AddSubnodeDefault(node, "DownloadingFrom", "Downloading file from: ");
-            AddSubnodeDefault(node, "DownloadingTo", "To: ");
-            AddSubnodeDefault(node, "UnzipingFile", "Unziping file: ");
-            AddSubnodeDefault(node, "FileDeletingError", "Failed to delete file: ");
-            AddSubnodeDefault(node, "WowExeMissing", "WoW.exe was not found!");
-            AddSubnodeDefault(node, "DataDirMissing", "Data directory was not found!");
-            AddSubnodeDefault(node, "BlizzlikeMpqMissing", "Failed to find essential file: ");
-            AddSubnodeDefault(node, "LauncherNotInWowDir", "Your WoW client is either damaged, or Launcher is not in WoW root directory.");
-            AddSubnodeDefault(node, "FilelistOpeningFailed", "Launcher could not open filelist on web. Check your internet connection, or contact your support team. Error message: ");
-            AddSubnodeDefault(node, "FilelistReadingFailed", "Filelist on web is invalid. Contact your support team.");
-            AddSubnodeDefault(node, "FileOnsWebMissing", "File's size could not be found. File is probably missing on web server. ");
-            AddSubnodeDefault(node, "WebRealmlistMissing", "File realmlist.wtf could not be found on web. Realmlist could not be verified.");
-            AddSubnodeDefault(node, "RealmlistMissing", "It appears local realmlist.wtf is missing. Create a new one if it is so.");
-            AddSubnodeDefault(node, "OptionalsPresetLoadFailed", "You don't have saved optional groups selection, or list of them has changed. Please, pay attention optional files checkbox list before you click on an Update button.");
-            AddSubnodeDefault(node, "DownloadError", "Error occured while followin file was being downloaded: ");
-            AddSubnodeDefault(node, "FileDownloadError", "Some files apparently weren't succesfully downloaded. Re-run Check for updates and Update.");
-            AddSubnodeDefault(node, "HelloImageNotLoaded", "News image could not be loaded.");
-            AddSubnodeDefault(node, "VersionNotVerified", "Launcher could not verify wheter it is up to date. It will proceed as normal, but notify your support team about this issue if it persists.");
-            AddSubnodeDefault(node, "VersionNotVerifiedFileNotFound", "VersionNotVerifiedFileNotFound.");
-            AddSubnodeDefault(node, "VersionNotVerifiedFileParseError", "VersionNotVerifiedFileParseError.");
-            AddSubnodeDefault(node, "CouldNotBeUpdated", "Launcher has attempted an update of itself, but it was not successful. Try to re-run a Launcher and contact your support team if issue persists.");
-            AddSubnodeDefault(node, "OutdatedLauncher", "There seems to be a new version of Launcher on web. Launcher will attempt an update and then restart.");
-            AddSubnodeDefault(node, "LauncherUpdated", "Launcher has been succesfully updated. Please, run Launcher again.");
-            AddSubnodeDefault(node, "Removing", "Removing file: ");
+            AddSubnodeDefault(node, "HelloMessage", "欢迎来到wow wild:https://www.wild-wow.com", "请将这条信息保留在这里。如果你想添加任何内容，请添加在原始消息之后。");
+            AddSubnodeDefault(node, "XmlNotOpened", "启动器使用默认参数。如果\"更新\"按钮不可用，请尝试关闭启动器后重新打开。");
+            AddSubnodeDefault(node, "ChangelogNotOpened", "无法打开网页上的更新日志文件。");
+            AddSubnodeDefault(node, "ChangelogNotLoaded", "无法加载更新日志数据。请联系支持。");
+            AddSubnodeDefault(node, "ChangelogEmpty", "警告：更新日志为空。你当前正在创建一个新的。");
+            AddSubnodeDefault(node, "InvalidFtpPassword", "登录密码组合不正确, 或FTP路径到更新日志不正确。");
+            AddSubnodeDefault(node, "PictureNotOpened", "无法打开给定URL的图片。URL似乎无效。");
+            AddSubnodeDefault(node, "ChangelogNotUploaded", "无法上传更新日志。备份XML文件可以在启动器目录中找到。");
+            AddSubnodeDefault(node, "ChangelogUploadOK", "更新日志已成功更新。");
+            AddSubnodeDefault(node, "UnZipingFileError", "解压文件失败：");
+            AddSubnodeDefault(node, "DownloadingFrom", "正在从以下地址下载文件：");
+            AddSubnodeDefault(node, "DownloadingTo", "下载到：");
+            AddSubnodeDefault(node, "UnzipingFile", "正在解压文件：");
+            AddSubnodeDefault(node, "FileDeletingError", "文件删除失败：");
+            AddSubnodeDefault(node, "WowExeMissing", "未找到Wow.exe");
+            AddSubnodeDefault(node, "DataDirMissing", "未找到数据目录！");
+            AddSubnodeDefault(node, "BlizzlikeMpqMissing", "未能找到关键文件：");
+            AddSubnodeDefault(node, "LauncherNotInWowDir", "你的魔兽世界客户端要么已损坏，要么启动器不在魔兽世界根目录。");
+            AddSubnodeDefault(node, "FilelistOpeningFailed", "启动器无法打开网上的文件列表。检查你的网络连接，或联系支持团队。错误信息：");
+            AddSubnodeDefault(node, "FilelistReadingFailed", "网络上的文件列表无效。联系你的支持团队。");
+            AddSubnodeDefault(node, "FileOnsWebMissing", "无法找到文件的大小。文件可能在网上服务器上丢失。");
+            AddSubnodeDefault(node, "WebRealmlistMissing", "无法在网上找到realmlist.wtf文件。无法验证realmlist。");
+            AddSubnodeDefault(node, "RealmlistMissing", "本地的realmlist.wtf似乎丢失了。如果是这样,请创建一个新的。");
+            AddSubnodeDefault(node, "OptionalsPresetLoadFailed", "你没有保存可选组的选择，或者它们的列表已更改。请在点击更新按钮前注意可选文件复选框列表。");
+            AddSubnodeDefault(node, "DownloadError", "在下载以下文件时发生错误：");
+            AddSubnodeDefault(node, "FileDownloadError", "有些文件显然没有成功下载。重新运行更新检查和更新。");
+            AddSubnodeDefault(node, "HelloImageNotLoaded", "新闻图片无法加载。");
+            AddSubnodeDefault(node, "VersionNotVerified", "启动器无法验证是否为最新。如果这个问题持续存在，请通知你的支持团队。");
+            AddSubnodeDefault(node, "VersionNotVerifiedFileNotFound", "未找到VersionNotVerifiedFileNotFound。");
+            AddSubnodeDefault(node, "VersionNotVerifiedFileParseError", "VersionNotVerifiedFileParseError。");
+            AddSubnodeDefault(node, "CouldNotBeUpdated", "启动器尝试了自我更新，但没有成功。如果问题持续存在，请尝试重新运行启动器并联系你的支持团队。");
+            AddSubnodeDefault(node, "OutdatedLauncher", "网上似乎有一个新版本的启动器。启动器将尝试更新然后重启。");
+            AddSubnodeDefault(node, "LauncherUpdated", "启动器已成功更新。请再次运行启动器。");
+            AddSubnodeDefault(node, "Removing", "正在移除文件：");
 
             defaultXml.DocumentElement.AppendChild(comment);
             defaultXml.DocumentElement.AppendChild(node);
         }
+
 
         /// <summary>
         /// Save default XML as new LauncherConfig.xml, overwrite an old one.

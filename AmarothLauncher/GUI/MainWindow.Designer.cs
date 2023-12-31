@@ -226,7 +226,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panelOutput);
             this.splitContainer1.Size = new System.Drawing.Size(647, 456);
-            this.splitContainer1.SplitterDistance = 363;
+            this.splitContainer1.SplitterDistance = 208;
             this.splitContainer1.TabIndex = 12;
             this.splitContainer1.TabStop = false;
             // 
