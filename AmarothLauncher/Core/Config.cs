@@ -11,6 +11,7 @@ namespace AmarothLauncher.Core
     public class Config
     {
         private static Config instance;
+        private const string BaseUrl = "http://www.didiwow.com/";
 
         // Launcher's version.
         public double version = 20240101.0;
@@ -184,16 +185,16 @@ namespace AmarothLauncher.Core
             XmlComment comment = defaultXml.CreateComment("Paths to files and folders Launcher will work with. They are commonly all !CASE SENSITIVE!");
             XmlNode node = defaultXml.CreateElement("Paths");
 
-            AddSubnodeDefault(node, "FilelistPath", "https://www.wild-wow.com/updates/filelist.conf", "Path to text filelist.");
-            AddSubnodeDefault(node, "VersionPath", "https://www.wild-wow.com/updates/launcherversion.conf", "Path to text file which contains your Lancher's current version (version is a double value with . as separator!");
-            AddSubnodeDefault(node, "LauncherPath", "https://www.wild-wow.com/updates/Launcher.zip", "Path to a zip file with Launcher files - used if Launcher finds itself outdated.");
-            AddSubnodeDefault(node, "FilesRootPath", "https://www.wild-wow.com/updates/", "Path to folder with files. Paths in filelist are relative to this path.");
-            AddSubnodeDefault(node, "ChangelogPath", "https://www.wild-wow.com/updates/changelog.xml", "!HTTP! path to changelog XML file.");
+            AddSubnodeDefault(node, "FilelistPath", $"{BaseUrl}/updates/filelist.conf", "Path to text filelist.");
+            AddSubnodeDefault(node, "VersionPath", $"{BaseUrl}/updates/launcherversion.conf", "Path to text file which contains your Lancher's current version (version is a double value with . as separator!");
+            AddSubnodeDefault(node, "LauncherPath", $"{BaseUrl}/updates/Launcher.zip", "Path to a zip file with Launcher files - used if Launcher finds itself outdated.");
+            AddSubnodeDefault(node, "FilesRootPath", $"{BaseUrl}/updates/", "Path to folder with files. Paths in filelist are relative to this path.");
+            AddSubnodeDefault(node, "ChangelogPath", $"{BaseUrl}/updates/changelog.xml", "!HTTP! path to changelog XML file.");
             AddSubnodeDefault(node, "ChangelogFTPPath", "ftp://ftp.example.com//www/files/", "!Full! !FTP! path to folder in which changelog is. Notice that //www/ part. You may want to use an IP instead of a domain name.");
-            AddSubnodeDefault(node, "Webpage", "https://www.wild-wow.com", "URL which is to be opened when user clicks on Project webpage button.");
-            AddSubnodeDefault(node, "Registration", "https://www.wild-wow.com", "URL which is to be opened when user clicks on Registration button.");
-            AddSubnodeDefault(node, "Instructions", "https://www.wild-wow.com/launchermanual/", "URL which is to be opened when user clicks on Launcher manual button.");
-            AddSubnodeDefault(node, "HelloImage", "https://www.wild-wow.com/updates/hello.png", "URL to image which is to be displayed in Main window (latest news image). Clicking on it opens a changelog browser.");
+            AddSubnodeDefault(node, "Webpage", BaseUrl, "URL which is to be opened when user clicks on Project webpage button.");
+            AddSubnodeDefault(node, "Registration", BaseUrl, "URL which is to be opened when user clicks on Registration button.");
+            AddSubnodeDefault(node, "Instructions", $"{BaseUrl}/launchermanual/", "URL which is to be opened when user clicks on Launcher manual button.");
+            AddSubnodeDefault(node, "HelloImage", $"{BaseUrl}/updates/hello.png", "URL to image which is to be displayed in Main window (latest news image). Clicking on it opens a changelog browser.");
 
             defaultXml.DocumentElement.AppendChild(comment);
             defaultXml.DocumentElement.AppendChild(node);
@@ -207,7 +208,7 @@ namespace AmarothLauncher.Core
             XmlComment comment = defaultXml.CreateComment("Visual settings for Main Window.");
             XmlNode node = defaultXml.CreateElement("MainWindow");
 
-            AddSubnodeDefault(node, "WindowName", "wild-wow Launcher " + version.ToString("F", CultureInfo.InvariantCulture), "Name of main window. Change this to match your project's name.");
+            AddSubnodeDefault(node, "WindowName", "DiDi Launcher " + version.ToString("F", CultureInfo.InvariantCulture), "Name of main window. Change this to match your project's name.");
             AddSubnodeDefault(node, "OutputBox", "Text output:");
             AddSubnodeDefault(node, "OptionalBox", "可选更新:");
             AddSubnodeDefault(node, "CheckForUpdatesButton", "检查更新");
@@ -310,7 +311,7 @@ namespace AmarothLauncher.Core
             XmlComment comment = defaultXml.CreateComment("各种可能由启动器输出的消息。");
             XmlNode node = defaultXml.CreateElement("Messages");
 
-            AddSubnodeDefault(node, "HelloMessage", "欢迎来到wow wild:https://www.wild-wow.com", "请将这条信息保留在这里。如果你想添加任何内容，请添加在原始消息之后。");
+            AddSubnodeDefault(node, "HelloMessage", "欢迎来到DiDi WoW", "请将这条信息保留在这里。如果你想添加任何内容，请添加在原始消息之后。");
             AddSubnodeDefault(node, "XmlNotOpened", "启动器使用默认参数。如果\"更新\"按钮不可用，请尝试关闭启动器后重新打开。");
             AddSubnodeDefault(node, "ChangelogNotOpened", "无法打开网页上的更新日志文件。");
             AddSubnodeDefault(node, "ChangelogNotLoaded", "无法加载更新日志数据。请联系支持。");
