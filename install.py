@@ -1,7 +1,7 @@
 import os
 import shutil
 import zipfile
-import xml.etree.ElementTree as ET
+import re
 
 # 设置基础URL和updates目录路径
 updates_dir = "updates"
@@ -9,7 +9,7 @@ addons_dir = os.path.join(updates_dir, "Interface/Addons")
 output_file = os.path.join(updates_dir, "filelist.conf")
 executable_path = "AmarothLauncher/bin/Release/DiDiLauncher.exe"
 zip_file_path = os.path.join(updates_dir, "Launcher.zip")
-project_file_path = "AmarothLauncher/AmarothLauncher.csproj"
+config_file_path = "AmarothLauncher/Core/Config.cs"
 version_file_path = os.path.join(updates_dir, "launcherversion.conf")
 excluded_dirs = [addons_dir, ]
 
@@ -59,16 +59,17 @@ def create_zip_from_directory(directory, zip_name):
     print(f"Created zip file from directory: {zip_path}")
     return zip_path
 
-# 读取项目文件中的版本号
-def read_version_from_csproj(csproj_path):
-    tree = ET.parse(csproj_path)
-    root = tree.getroot()
-    namespace = {'msbuild': 'http://schemas.microsoft.com/developer/msbuild/2003'}
-    version_element = root.find('msbuild:PropertyGroup/msbuild:ApplicationVersion', namespace)
-    if version_element is not None:
-        return version_element.text
+
+# 读取Config.cs文件中的版本号
+def read_version_from_config(config_path):
+    version_pattern = re.compile(r'public double version\s*=\s*(\d+);')
+    with open(config_path, 'r', encoding = 'utf-8') as file:
+        content = file.read()
+    match = version_pattern.search(content)
+    if match:
+        return match.group(1)
     else:
-        raise ValueError("ApplicationVersion not found in the project file.")
+        raise ValueError("Version not found in the config file.")
 
 # 将版本号写入到launcherversion.conf
 def write_version_to_conf(version, conf_path):
@@ -112,5 +113,5 @@ create_zip_file(zip_file_path, executable_path)
 shutil.copy(executable_path, "updates/DiDiLauncher.exe")
 
 # 读取版本号并写入到launcherversion.conf
-version = read_version_from_csproj(project_file_path)
+version = read_version_from_config(config_file_path)
 write_version_to_conf(version, version_file_path)

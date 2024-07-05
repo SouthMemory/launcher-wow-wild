@@ -14,7 +14,7 @@ namespace AmarothLauncher.Core
         private const string BaseUrl = "http://www.didiwow.com/";
 
         // Launcher's version.
-        public double version = 20240101.0;
+        public double version = 202407052200;
         public bool isDefaultConfigUsed { get; private set; }
         XmlDocument xml = new XmlDocument();
         XmlDocument defaultXml = new XmlDocument();
