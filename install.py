@@ -109,7 +109,7 @@ print(f"File list has been generated and written to {output_file}")
 
 # 创建 Launcher.zip
 create_zip_file(zip_file_path, executable_path)
-shutil.copy(executable_path, "DiDiLauncher.exe")
+shutil.copy(executable_path, "updates/DiDiLauncher.exe")
 
 # 读取版本号并写入到launcherversion.conf
 version = read_version_from_csproj(project_file_path)
