@@ -65,7 +65,7 @@ namespace AmarothLauncher.Core
                 blizzlikeMPQs.Add(cwd + @"\data\lichking.mpq");
                 blizzlikeMPQs.Add(cwd + @"\data\patch.mpq");
                 blizzlikeMPQs.Add(cwd + @"\data\patch-2.mpq");
-                blizzlikeMPQs.Add(cwd + @"\data\patch-3.mpq");
+                // blizzlikeMPQs.Add(cwd + @"\data\patch-3.mpq");
 
                 foreach (string mpqFile in blizzlikeMPQs)
                     if (!File.Exists(mpqFile))

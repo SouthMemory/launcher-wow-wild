@@ -12,9 +12,10 @@ namespace AmarothLauncher.Core
     {
         private static Config instance;
         private const string BaseUrl = "http://www.didiwow.com/";
+        private const string DownloadsUrl = "https://southmemory.github.io/launcher-wow-wild";
 
         // Launcher's version.
-        public double version = 202407052200;
+        public double version = 202407271953;
         public bool isDefaultConfigUsed { get; private set; }
         XmlDocument xml = new XmlDocument();
         XmlDocument defaultXml = new XmlDocument();
@@ -185,16 +186,16 @@ namespace AmarothLauncher.Core
             XmlComment comment = defaultXml.CreateComment("Paths to files and folders Launcher will work with. They are commonly all !CASE SENSITIVE!");
             XmlNode node = defaultXml.CreateElement("Paths");
 
-            AddSubnodeDefault(node, "FilelistPath", $"{BaseUrl}/updates/filelist.conf", "Path to text filelist.");
-            AddSubnodeDefault(node, "VersionPath", $"{BaseUrl}/updates/launcherversion.conf", "Path to text file which contains your Lancher's current version (version is a double value with . as separator!");
-            AddSubnodeDefault(node, "LauncherPath", $"{BaseUrl}/updates/Launcher.zip", "Path to a zip file with Launcher files - used if Launcher finds itself outdated.");
-            AddSubnodeDefault(node, "FilesRootPath", $"{BaseUrl}/updates/", "Path to folder with files. Paths in filelist are relative to this path.");
-            AddSubnodeDefault(node, "ChangelogPath", $"{BaseUrl}/updates/changelog.xml", "!HTTP! path to changelog XML file.");
+            AddSubnodeDefault(node, "FilelistPath", $"{DownloadsUrl}/updates/filelist.conf", "Path to text filelist.");
+            AddSubnodeDefault(node, "VersionPath", $"{DownloadsUrl}/updates/launcherversion.conf", "Path to text file which contains your Lancher's current version (version is a double value with . as separator!");
+            AddSubnodeDefault(node, "LauncherPath", $"{DownloadsUrl}/updates/DiDiLauncher.zip", "Path to a zip file with Launcher files - used if Launcher finds itself outdated.");
+            AddSubnodeDefault(node, "FilesRootPath", $"{DownloadsUrl}/updates/", "Path to folder with files. Paths in filelist are relative to this path.");
+            AddSubnodeDefault(node, "ChangelogPath", $"{DownloadsUrl}/updates/changelog.xml", "!HTTP! path to changelog XML file.");
             AddSubnodeDefault(node, "ChangelogFTPPath", "ftp://ftp.example.com//www/files/", "!Full! !FTP! path to folder in which changelog is. Notice that //www/ part. You may want to use an IP instead of a domain name.");
             AddSubnodeDefault(node, "Webpage", BaseUrl, "URL which is to be opened when user clicks on Project webpage button.");
             AddSubnodeDefault(node, "Registration", BaseUrl, "URL which is to be opened when user clicks on Registration button.");
-            AddSubnodeDefault(node, "Instructions", $"{BaseUrl}/launchermanual/", "URL which is to be opened when user clicks on Launcher manual button.");
-            AddSubnodeDefault(node, "HelloImage", $"{BaseUrl}/updates/hello.png", "URL to image which is to be displayed in Main window (latest news image). Clicking on it opens a changelog browser.");
+            AddSubnodeDefault(node, "Instructions", $"{DownloadsUrl}/launchermanual/", "URL which is to be opened when user clicks on Launcher manual button.");
+            AddSubnodeDefault(node, "HelloImage", $"{DownloadsUrl}/updates/hello.png", "URL to image which is to be displayed in Main window (latest news image). Clicking on it opens a changelog browser.");
 
             defaultXml.DocumentElement.AppendChild(comment);
             defaultXml.DocumentElement.AppendChild(node);

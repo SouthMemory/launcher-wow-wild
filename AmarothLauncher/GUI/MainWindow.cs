@@ -93,9 +93,10 @@ namespace AmarothLauncher
             }
 
             double webVersion;
+            Console.WriteLine($"当前启动器版本号: {c.version}");
             if (Double.TryParse(versionOnWeb.Trim(), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out webVersion))
             {
-                Console.WriteLine($"当前启动器版本号: {c.version}, 网络上的启动器版本号: {webVersion}");
+                Console.WriteLine($"网络上的启动器版本号: {webVersion}");
                 Console.WriteLine($"IsUpToDate returning {webVersion <= c.version}");
                 return webVersion <= c.version;
             }
